@@ -1,0 +1,61 @@
+{
+  "name": "luis-techelevator-bot",
+  "padlock": "DvXIQILlkU72s6Z34/XA3g==!rU/4uvNzmFv+MP5TLQLofK9UWFnKTbA1fG6B+9MHI2BsB/Y9wjYeuo1XWDhAjPhY",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
+      "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
+      "resourceGroup": "luis-csharp-bot-resource-group",
+      "serviceName": "luis-techelevator-bot",
+      "type": "abs",
+      "name": "luis-techelevator-bot",
+      "id": "1"
+    },
+    {
+      "connectionString": "NrpqbeW5YpmXIIK/8n6U+g==!le6bQ1GEbq1HZQyNNKmKEWuDYS5/3R3Qykc+NmxVTmKfZuaws2oyzvyBX6uuinyksXmwaVMhmujq7dJuV/jghsPHZ0XkD0tCbQU4mvuaTt3f0UOB9OomW3RgKXl2+i6eXAbNBgnLP69ykDn8P3EXHswo375w+WHsurnzmQ6Z/0IS7g+f323jrLiq8eZ8eUTwcNlzd3H3ugGy5234xLoqLLuJJuQJRkmDl+RrLihZhgM=",
+      "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
+      "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
+      "resourceGroup": "luis-csharp-bot-resource-group",
+      "serviceName": "luistechelevatorbot801e",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "c553f692-cbfc-4335-a09f-20c95fe9cd6d",
+      "appPassword": "s0gv/SQa3oSq9QhLsA/yzQ==!zZEYrbHRp5RRZtWIFjhxZaHxBki8OFhHlpJMLkeKvns=",
+      "endpoint": "https://luis-techelevator-bot.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    },
+    {
+      "instrumentationKey": "30pEVNK3l8hdsw2dF33HHw==!xhYohWtyI03rlXAKuFkb9171ZysapYL79H/0+yTitQoDeXgWIrxlXS1XRrndbyLK",
+      "applicationId": "fdf3565b-b47c-4dfb-b71f-c1def9d0bc53",
+      "apiKeys": {},
+      "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
+      "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
+      "resourceGroup": "luis-csharp-bot-resource-group",
+      "serviceName": "luis-techelevator-bot2yoqq7",
+      "type": "appInsights",
+      "id": "5"
+    },
+    {
+      "appId": "756c1503-f6e0-447f-9cf7-82a4b0211623",
+      "authoringKey": "YRkY5JjRAxYxv17am/QEGQ==!7sURzdmQ+ScfHiPqNHEkaCBhqk88VbCK2chib2QCPtdeyIob88FD2zxCNQgUWFVk",
+      "version": "0.1",
+      "region": "westus",
+      "type": "luis",
+      "name": "BasicBotLuisApplication",
+      "id": "6"
+    }
+  ]
+}
