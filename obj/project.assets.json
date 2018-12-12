@@ -11982,23 +11982,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sawyer Redpath\\.nuget\\packages\\": {},
+    "C:\\Users\\Danielle Delbrocco\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sawyer Redpath\\chatbot-capstone\\team-chatbot-final-capstone\\BasicBot.csproj",
+      "projectUniqueName": "C:\\Users\\Danielle Delbrocco\\capstone\\team-chatbot-final-capstone\\BasicBot.csproj",
       "projectName": "BasicBot",
-      "projectPath": "C:\\Users\\Sawyer Redpath\\chatbot-capstone\\team-chatbot-final-capstone\\BasicBot.csproj",
-      "packagesPath": "C:\\Users\\Sawyer Redpath\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sawyer Redpath\\chatbot-capstone\\team-chatbot-final-capstone\\obj\\",
+      "projectPath": "C:\\Users\\Danielle Delbrocco\\capstone\\team-chatbot-final-capstone\\BasicBot.csproj",
+      "packagesPath": "C:\\Users\\Danielle Delbrocco\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Danielle Delbrocco\\capstone\\team-chatbot-final-capstone\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Sawyer Redpath\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Danielle Delbrocco\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

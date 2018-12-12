@@ -30,8 +30,8 @@ namespace Microsoft.BotBuilderSamples
         private const string CityPrompt = "cityPrompt";
 
         // Minimum length requirements for city and name
-        private const int NameLengthMinValue = 3;
-        private const int CityLengthMinValue = 5;
+        private const int NameLengthMinValue = 2;
+        private const int CityLengthMinValue = 4;
 
         // Dialog IDs
         private const string ProfileDialog = "profileDialog";
@@ -101,7 +101,7 @@ namespace Microsoft.BotBuilderSamples
                     Prompt = new Activity
                     {
                         Type = ActivityTypes.Message,
-                        Text = "What is your name?",
+                        Text = "Hello! I'm Luis, Im here to help you with your Tech Elevator journey. But first, what is your name?",
                     },
                 };
                 return await stepContext.PromptAsync(NamePrompt, opts);
@@ -133,7 +133,7 @@ namespace Microsoft.BotBuilderSamples
                     Prompt = new Activity
                     {
                         Type = ActivityTypes.Message,
-                        Text = $"Hello {greetingState.Name}, what city do you live in?",
+                        Text = $"Hello {greetingState.Name}! One more question - what city do you live in?",
                     },
                 };
                 return await stepContext.PromptAsync(CityPrompt, opts);
@@ -216,7 +216,7 @@ namespace Microsoft.BotBuilderSamples
             var greetingState = await UserProfileAccessor.GetAsync(context);
 
             // Display their profile information and end dialog.
-            await context.SendActivityAsync($"Hi {greetingState.Name}, from {greetingState.City}, nice to meet you!");
+            await context.SendActivityAsync($"Hi {greetingState.Name}, from {greetingState.City}, nice to meet you! What can I help you with?");
             return await stepContext.EndDialogAsync();
         }
     }
