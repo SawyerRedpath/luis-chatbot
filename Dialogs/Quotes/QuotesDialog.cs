@@ -7,6 +7,9 @@ namespace BasicBot.Dialogs.Quotes
 {
     public class QuotesDialog
     {
+        public QuotesDialog()
+        {
 
+        }
     }
 }
