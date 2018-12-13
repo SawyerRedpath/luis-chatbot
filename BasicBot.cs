@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BasicBot.QnA;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
@@ -38,13 +39,14 @@ namespace Microsoft.BotBuilderSamples
         private readonly UserState _userState;
         private readonly ConversationState _conversationState;
         private readonly BotServices _services;
+        private readonly QnAService _qnaService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BasicBot"/> class.
         /// </summary>
         /// <param name="botServices">Bot services.</param>
         /// <param name="accessors">Bot State Accessors.</param>
-        public BasicBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory)
+        public BasicBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory, QnAService qnaService)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _userState = userState ?? throw new ArgumentNullException(nameof(userState));
@@ -52,6 +54,7 @@ namespace Microsoft.BotBuilderSamples
 
             _greetingStateAccessor = _userState.CreateProperty<GreetingState>(nameof(GreetingState));
             _dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
+            _qnaService = qnaService ?? throw new ArgumentNullException(nameof(qnaService));
 
             // Verify LUIS configuration.
             if (!_services.LuisServices.ContainsKey(LuisConfiguration))
@@ -127,7 +130,18 @@ namespace Microsoft.BotBuilderSamples
                                 default:
                                     // Help or no intent identified, either way, let's provide some help.
                                     // to the user
-                                    await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
+
+
+                                    var response = await _qnaService.GetAnswers(activity.Text, 1);
+                                    if (response.Answers[0].Score > 50)
+                                    {
+                                        await dc.Context.SendActivityAsync(response.Answers[0].Answer);
+                                    }
+                                    else
+                                    {
+                                        await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
+                                    }
+
                                     break;
                             }
 
