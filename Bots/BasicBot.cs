@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BasicBot.DAL;
+using BasicBot.DALs;
 using BasicBot.Dialogs.Quotes;
 using BasicBot.QnA;
 using Microsoft.Bot.Builder;
@@ -41,6 +43,7 @@ namespace Microsoft.BotBuilderSamples
         private readonly UserState _userState;
         private readonly ConversationState _conversationState;
         private readonly BotServices _services;
+        private IQuotesDAL quotesDAL;
         private readonly QnAService _qnaService;
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace Microsoft.BotBuilderSamples
         /// </summary>
         /// <param name="botServices">Bot services.</param>
         /// <param name="accessors">Bot State Accessors.</param>
-        public BasicBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory, QnAService qnaService)
+        public BasicBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory, IQuotesDAL quotesDAL,  QnAService qnaService)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _userState = userState ?? throw new ArgumentNullException(nameof(userState));
@@ -58,6 +61,8 @@ namespace Microsoft.BotBuilderSamples
             _dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
             _qnaService = qnaService ?? throw new ArgumentNullException(nameof(qnaService));
 
+            this.quotesDAL = quotesDAL;
+
             // Verify LUIS configuration.
             if (!_services.LuisServices.ContainsKey(LuisConfiguration))
             {
@@ -66,7 +71,6 @@ namespace Microsoft.BotBuilderSamples
 
             Dialogs = new DialogSet(_dialogStateAccessor);
             Dialogs.Add(new GreetingDialog(_greetingStateAccessor, loggerFactory));
-            //Dialogs.Add(new QuotesDialog());
         }
 
         private DialogSet Dialogs { get; set; }
@@ -130,7 +134,8 @@ namespace Microsoft.BotBuilderSamples
                                     break;
 
                                 case QuoteIntent:
-                                    await turnContext.SendActivityAsync("Get your ass in gear.");
+                                    RandomQuote quote = quotesDAL.GetRandomQuote();
+                                    await turnContext.SendActivityAsync($"{quote.Quote} -{quote.QuoteSource}");
                                     break;
 
                                 case NoneIntent:

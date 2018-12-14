@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace BasicBot.Dialogs.Quotes
 {
-    public class QuotesDialog
+    public class RandomQuote
     {
-        public QuotesDialog()
-        {
+        public string Quote { get; set; }
 
-        }
+        public string QuoteSource { get; set; }
     }
 }

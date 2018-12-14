@@ -2,8 +2,11 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using BasicBot.DAL;
+using BasicBot.DALs;
 using BasicBot.QnA;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -131,6 +134,15 @@ namespace Microsoft.BotBuilderSamples
 
             var userState = new UserState(dataStore);
             services.AddSingleton(userState);
+
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = "studentchatbot.database.windows.net";
+            builder.UserID = "TeamStar";
+            builder.Password = "MamaLovesMe#1";
+            builder.InitialCatalog = "StudentChatBot";
+            string connectionString = builder.ConnectionString;
+
+            services.AddTransient<IQuotesDAL>(j => new QuotesDAL(connectionString));
 
             services.AddBot<BasicBot>(options =>
             {

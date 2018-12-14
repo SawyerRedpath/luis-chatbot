@@ -12,23 +12,37 @@ namespace BasicBot.DALs
     {
         private string connectionString;
 
-        public QuotesDAL(string dbConnectionString)
+        public QuotesDAL(string connectionString)
         {
-            connectionString = dbConnectionString;
+            this.connectionString = connectionString;
         }
 
-        public QuoteState GetRandomQuote()
+        public RandomQuote GetRandomQuote()
         {
+            RandomQuote q = new RandomQuote();
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
-                    SqlCommand command = new SqlCommand("SELECT TOP 1 ")
+                    SqlCommand command = new SqlCommand("SELECT TOP 1 quote, quote_source FROM motivational_quotes ORDER BY NEWID()", conn);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        q.Quote = Convert.ToString(reader["quote"]);
+                        q.QuoteSource = Convert.ToString(reader["quote_source"]);
+                    }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
 
+            return q;
         }
     }
 }
