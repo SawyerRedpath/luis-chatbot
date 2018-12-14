@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using BasicBot.DAL;
 using BasicBot.DALs;
+using BasicBot.QnA;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -86,7 +87,7 @@ namespace Microsoft.BotBuilderSamples
             }
 
             services.AddSingleton(sp => botConfig ?? throw new InvalidOperationException($"The .bot configuration file could not be loaded. botFilePath: {botFilePath}"));
-
+            services.AddScoped(sp => new QnAService("fd6066ef-4ff4-4d11-b1c0-becfdec28eaf", "45a2c92c-2973-48bc-ba0a-53072bf46671"));
             // Add BotServices singleton.
             // Create the connected services from .bot file.
             services.AddSingleton(sp => new BotServices(botConfig));
