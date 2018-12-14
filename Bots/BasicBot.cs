@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BasicBot.DAL;
+using BasicBot.DALs;
 using BasicBot.Dialogs.Quotes;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
@@ -40,13 +42,14 @@ namespace Microsoft.BotBuilderSamples
         private readonly UserState _userState;
         private readonly ConversationState _conversationState;
         private readonly BotServices _services;
+        private IQuotesDAL quotesDAL;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BasicBot"/> class.
         /// </summary>
         /// <param name="botServices">Bot services.</param>
         /// <param name="accessors">Bot State Accessors.</param>
-        public BasicBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory)
+        public BasicBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory, IQuotesDAL quotesDAL)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _userState = userState ?? throw new ArgumentNullException(nameof(userState));
@@ -54,6 +57,8 @@ namespace Microsoft.BotBuilderSamples
 
             _greetingStateAccessor = _userState.CreateProperty<GreetingState>(nameof(GreetingState));
             _dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
+
+            this.quotesDAL = quotesDAL;
 
             // Verify LUIS configuration.
             if (!_services.LuisServices.ContainsKey(LuisConfiguration))
@@ -63,7 +68,6 @@ namespace Microsoft.BotBuilderSamples
 
             Dialogs = new DialogSet(_dialogStateAccessor);
             Dialogs.Add(new GreetingDialog(_greetingStateAccessor, loggerFactory));
-            //Dialogs.Add(new QuotesDialog());
         }
 
         private DialogSet Dialogs { get; set; }
@@ -127,7 +131,8 @@ namespace Microsoft.BotBuilderSamples
                                     break;
 
                                 case QuoteIntent:
-                                    await turnContext.SendActivityAsync("Get your ass in gear.");
+                                    RandomQuote quote = quotesDAL.GetRandomQuote();
+                                    await turnContext.SendActivityAsync($"{quote.Quote} -{quote.QuoteSource}");
                                     break;
 
                                 case NoneIntent:

@@ -8,6 +8,6 @@ namespace BasicBot.DAL
 {
     public interface IQuotesDAL
     {
-        QuoteState GetRandomQuote();
+        RandomQuote GetRandomQuote();
     }
 }
