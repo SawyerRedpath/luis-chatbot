@@ -28,6 +28,8 @@ namespace Microsoft.BotBuilderSamples
         public const string GreetingIntent = "Greeting";
         public const string JobSearchIntent = "JobSearch";
         public const string QuoteIntent = "MotivationalQuotes";
+        public const string CurriculumIntent = "Curriculum";
+        public const string PathwayIntent = "Pathway";
         public const string CancelIntent = "Cancel";
         public const string HelpIntent = "Help";
         public const string NoneIntent = "None";
@@ -139,10 +141,11 @@ namespace Microsoft.BotBuilderSamples
                                     break;
 
                                 case NoneIntent:
+                                case PathwayIntent:
+                                case CurriculumIntent:
                                 default:
                                     // Help or no intent identified, either way, let's provide some help.
                                     // to the user
-
                                     var response = await _qnaService.GetAnswers(activity.Text, 1);
                                     if (response.Answers[0].Score > 50)
                                     {
