@@ -9,7 +9,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using BasicBot.DAL;
 using BasicBot.DALs;
-using BasicBot.Dialogs.Help;
 using BasicBot.Dialogs.Quotes;
 using BasicBot.QnA;
 using Microsoft.Bot.Builder;
@@ -42,7 +41,6 @@ namespace Microsoft.BotBuilderSamples
         public static readonly string LuisConfiguration = "BasicBotLuisApplication";
 
         private readonly IStatePropertyAccessor<GreetingState> _greetingStateAccessor;
-        //private readonly IStatePropertyAccessor<HelpState> _helpStateAccessor;
         private readonly IStatePropertyAccessor<DialogState> _dialogStateAccessor;
         private readonly UserState _userState;
         private readonly ConversationState _conversationState;
@@ -62,7 +60,6 @@ namespace Microsoft.BotBuilderSamples
             _conversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
 
             _greetingStateAccessor = _userState.CreateProperty<GreetingState>(nameof(GreetingState));
-            //_helpStateAccessor = _userState.CreateProperty<HelpState>(nameof(HelpState));
             _dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
             _qnaService = qnaService ?? throw new ArgumentNullException(nameof(qnaService));
 
@@ -76,7 +73,6 @@ namespace Microsoft.BotBuilderSamples
 
             Dialogs = new DialogSet(_dialogStateAccessor);
             Dialogs.Add(new GreetingDialog(_greetingStateAccessor, loggerFactory));
-            //Dialogs.Add(new HelpDialog(_helpStateAccessor, loggerFactory));
         }
 
         private DialogSet Dialogs { get; set; }
@@ -136,7 +132,9 @@ namespace Microsoft.BotBuilderSamples
                                     break;
 
                                 case HelpIntent:
-                                    var reply = turnContext.Activity.CreateReply("What would you like help with?");
+                                    var reply = turnContext.Activity.CreateReply("What would you like help with? Choose one of the options below:");
+                                    reply.Type = ActivityTypes.Message;
+                                    reply.TextFormat = TextFormatTypes.Plain;
 
                                     reply.SuggestedActions = new SuggestedActions()
                                     {
@@ -153,9 +151,9 @@ namespace Microsoft.BotBuilderSamples
                                     await turnContext.SendActivityAsync(reply, cancellationToken);
                                     break;
 
-                                case JobSearchIntent:
-                                    await turnContext.SendActivityAsync("JobSearchIntentDetected");
-                                    break;
+                                //case JobSearchIntent:
+                                //    await turnContext.SendActivityAsync("JobSearchIntentDetected");
+                                //    break;
 
                                 case QuoteIntent:
                                     RandomQuote quote = quotesDAL.GetRandomQuote();
@@ -238,18 +236,6 @@ namespace Microsoft.BotBuilderSamples
 
                 return true;        // Handled the interrupt.
             }
-
-            //if (topIntent.Equals(HelpIntent))
-            //{
-            //    await dc.Context.SendActivityAsync("Let me try to provide some help.");
-            //    await dc.Context.SendActivityAsync("Would you like help with: Pathway, Curriculum, Motivational Quotes, or Job Search?");
-            //    if (dc.ActiveDialog != null)
-            //    {
-            //        await dc.RepromptDialogAsync();
-            //    }
-
-            //    return true;        // Handled the interrupt.
-            //}
 
             return false;           // Did not handle the interrupt.
         }
