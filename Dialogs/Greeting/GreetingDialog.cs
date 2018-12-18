@@ -133,7 +133,7 @@ namespace Microsoft.BotBuilderSamples
                     Prompt = new Activity
                     {
                         Type = ActivityTypes.Message,
-                        Text = $"Hello {greetingState.Name}! One more question - what city do you live in?",
+                        Text = $"Hello {greetingState.Name}! Which Tech Elevator campus are you affiliated with?",
                     },
                 };
                 return await stepContext.PromptAsync(CityPrompt, opts);
@@ -216,7 +216,7 @@ namespace Microsoft.BotBuilderSamples
             var greetingState = await UserProfileAccessor.GetAsync(context);
 
             // Display their profile information and end dialog.
-            await context.SendActivityAsync($"Hi {greetingState.Name}, from {greetingState.City}, nice to meet you! What can I help you with?");
+            await context.SendActivityAsync($"Hi {greetingState.Name}, on the {greetingState.City} campus, nice to meet you! What can I help you with?");
             return await stepContext.EndDialogAsync();
         }
     }

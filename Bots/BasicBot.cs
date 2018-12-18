@@ -131,9 +131,29 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
 
-                                case JobSearchIntent:
-                                    await turnContext.SendActivityAsync("JobSearchIntentDetected");
+                                case HelpIntent:
+                                    var reply = turnContext.Activity.CreateReply("What would you like help with? Choose one of the options below:");
+                                    reply.Type = ActivityTypes.Message;
+                                    reply.TextFormat = TextFormatTypes.Plain;
+
+                                    reply.SuggestedActions = new SuggestedActions()
+                                    {
+                                        Actions = new List<CardAction>()
+                                        {
+                                            new CardAction() { Title = "Pathway", Type = ActionTypes.ImBack, Value = "Pathway" },
+                                            new CardAction() { Title = "Curriculm", Type = ActionTypes.ImBack, Value = "Curriculum" },
+                                            new CardAction() { Title = "Motivational Quotes", Type = ActionTypes.ImBack, Value = "Motivational Quotes" },
+                                            new CardAction() { Title = "Job Search", Type = ActionTypes.ImBack, Value = "Job Search" },
+                                        },
+
+                                    };
+
+                                    await turnContext.SendActivityAsync(reply, cancellationToken);
                                     break;
+
+                                //case JobSearchIntent:
+                                //    await turnContext.SendActivityAsync("JobSearchIntentDetected");
+                                //    break;
 
                                 case QuoteIntent:
                                     RandomQuote quote = quotesDAL.GetRandomQuote();
@@ -212,18 +232,6 @@ namespace Microsoft.BotBuilderSamples
                 else
                 {
                     await dc.Context.SendActivityAsync("I don't have anything to cancel.");
-                }
-
-                return true;        // Handled the interrupt.
-            }
-
-            if (topIntent.Equals(HelpIntent))
-            {
-                await dc.Context.SendActivityAsync("Let me try to provide some help.");
-                await dc.Context.SendActivityAsync("Would you like help with: pathway, curriculum, motivational quotes, or job search?");
-                if (dc.ActiveDialog != null)
-                {
-                    await dc.RepromptDialogAsync();
                 }
 
                 return true;        // Handled the interrupt.
