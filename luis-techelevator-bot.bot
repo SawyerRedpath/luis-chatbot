@@ -1,61 +1,63 @@
 {
-  "name": "luis-techelevator-bot",
-  "padlock": "DvXIQILlkU72s6Z34/XA3g==!rU/4uvNzmFv+MP5TLQLofK9UWFnKTbA1fG6B+9MHI2BsB/Y9wjYeuo1XWDhAjPhY",
-  "version": "2.0",
-  "services": [
-    {
-      "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
-      "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
-      "resourceGroup": "luis-csharp-bot-resource-group",
-      "serviceName": "luis-techelevator-bot",
-      "type": "abs",
-      "name": "luis-techelevator-bot",
-      "id": "1"
-    },
-    {
-      "connectionString": "NrpqbeW5YpmXIIK/8n6U+g==!le6bQ1GEbq1HZQyNNKmKEWuDYS5/3R3Qykc+NmxVTmKfZuaws2oyzvyBX6uuinyksXmwaVMhmujq7dJuV/jghsPHZ0XkD0tCbQU4mvuaTt3f0UOB9OomW3RgKXl2+i6eXAbNBgnLP69ykDn8P3EXHswo375w+WHsurnzmQ6Z/0IS7g+f323jrLiq8eZ8eUTwcNlzd3H3ugGy5234xLoqLLuJJuQJRkmDl+RrLihZhgM=",
-      "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
-      "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
-      "resourceGroup": "luis-csharp-bot-resource-group",
-      "serviceName": "luistechelevatorbot801e",
-      "type": "blob",
-      "id": "2"
-    },
-    {
-      "appId": "",
-      "appPassword": "",
-      "endpoint": "http://localhost:3978/api/messages",
-      "type": "endpoint",
-      "name": "development",
-      "id": "3"
-    },
-    {
-      "appId": "c553f692-cbfc-4335-a09f-20c95fe9cd6d",
-      "appPassword": "s0gv/SQa3oSq9QhLsA/yzQ==!zZEYrbHRp5RRZtWIFjhxZaHxBki8OFhHlpJMLkeKvns=",
-      "endpoint": "https://luis-techelevator-bot.azurewebsites.net/api/messages",
-      "type": "endpoint",
-      "name": "production",
-      "id": "4"
-    },
-    {
-      "instrumentationKey": "30pEVNK3l8hdsw2dF33HHw==!xhYohWtyI03rlXAKuFkb9171ZysapYL79H/0+yTitQoDeXgWIrxlXS1XRrndbyLK",
-      "applicationId": "fdf3565b-b47c-4dfb-b71f-c1def9d0bc53",
-      "apiKeys": {},
-      "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
-      "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
-      "resourceGroup": "luis-csharp-bot-resource-group",
-      "serviceName": "luis-techelevator-bot2yoqq7",
-      "type": "appInsights",
-      "id": "5"
-    },
-    {
-      "appId": "756c1503-f6e0-447f-9cf7-82a4b0211623",
-      "authoringKey": "YRkY5JjRAxYxv17am/QEGQ==!7sURzdmQ+ScfHiPqNHEkaCBhqk88VbCK2chib2QCPtdeyIob88FD2zxCNQgUWFVk",
-      "version": "0.1",
-      "region": "westus",
-      "type": "luis",
-      "name": "BasicBotLuisApplication",
-      "id": "6"
-    }
-  ]
+    "name": "luis-techelevator-bot",
+    "description": "",
+    "services": [
+        {
+            "type": "abs",
+            "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
+            "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
+            "resourceGroup": "luis-csharp-bot-resource-group",
+            "serviceName": "luis-techelevator-bot",
+            "name": "luis-techelevator-bot",
+            "id": "1",
+            "appId": "c553f692-cbfc-4335-a09f-20c95fe9cd6d"
+        },
+        {
+            "type": "blob",
+            "connectionString": "XMqLUAePyngivNhnFkpaqw==!z4/aZHU6BU2kQR9sAztyiTYI8OzTUrN9DrXgHuiysViLak4E7xSoC0HTz16M1ELMvUmPaboq6COqcup35QPlzczZ6pau+WTxJ5r/GmPNQNheWwzNt983V5XWbi14vndkzUTkEeiUNEh6oDuJQasAvToWdXOb/MM8ejl17dQKFfHqf0LDuy22Mq8kDZwrdQBEux6iz+HziLtc6xbxdjXDMMq3sSsSW24aqxX0yzF4MlM=",
+            "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
+            "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
+            "resourceGroup": "luis-csharp-bot-resource-group",
+            "serviceName": "luistechelevatorbot801e",
+            "id": "2"
+        },
+        {
+            "type": "endpoint",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages",
+            "name": "development",
+            "id": "3"
+        },
+        {
+            "type": "endpoint",
+            "appId": "c553f692-cbfc-4335-a09f-20c95fe9cd6d",
+            "appPassword": "dz0kd2AQU9SUx9Ny1ltapQ==!2brCVqMPLq3VatFRrfnGqhHL/okJ5gjScIAiTYNP+iA=",
+            "endpoint": "https://luis-techelevator-bot.azurewebsites.net/api/messages",
+            "name": "production",
+            "id": "4"
+        },
+        {
+            "type": "appInsights",
+            "instrumentationKey": "tIdmDMlk/1gjFBbRZ159OA==!H7LVGVJcXrpbcOeAYNvpKnwkivqa+VLQc0MBqV5bHmzyU+0njg3cduI/lFVLZuHh",
+            "applicationId": "fdf3565b-b47c-4dfb-b71f-c1def9d0bc53",
+            "apiKeys": {},
+            "tenantId": "04c3c09c-2498-42cd-8786-78f0f66870c1",
+            "subscriptionId": "fef7fc98-6459-461c-9a88-b9b86e5dc1be",
+            "resourceGroup": "luis-csharp-bot-resource-group",
+            "serviceName": "luis-techelevator-bot2yoqq7",
+            "id": "5"
+        },
+        {
+            "type": "luis",
+            "appId": "756c1503-f6e0-447f-9cf7-82a4b0211623",
+            "authoringKey": "lheLFkJ0SlHf23rzjN6tCA==!XkATbIUAPCyrw3dVwrh/UcFDqX3W4E6OPT+af2KqYtyg39QyR9qWHa9lpIJO/7JW",
+            "version": "0.1",
+            "region": "eastus",
+            "name": "BasicBotLuisApplication",
+            "id": "6"
+        }
+    ],
+    "padlock": "mkUPWz8zL6keNxrmPCpEVg==!A/rH9ZqfDb8nImSpz8WcmK5IqGzDSna9dRSttWdssCR4iVR/Qqa409iG+1A3aA5O",
+    "version": "2.0"
 }
